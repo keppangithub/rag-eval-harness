@@ -1,0 +1,32 @@
+# All tunable settings live here, so nothing is hard-coded in the Python files.
+
+ingest:
+  # Pages from systemverification.com used as the chatbot's knowledge base.
+  # Each page is saved once to data/raw/<last-part-of-url>.md.
+  urls:
+    - https://systemverification.com
+    - https://systemverification.com/about-us
+    - https://systemverification.com/about-us/iso-certifications
+    - https://systemverification.com/country-sweden
+    - https://systemverification.com/career/consultant-role
+    - https://systemverification.com/delivery/qa-consulting
+    - https://systemverification.com/delivery/nearshoring
+    - https://systemverification.com/delivery/as-a-service
+    - https://systemverification.com/solutions/ai
+    - https://systemverification.com/solutions/quality-insights/ai-generated-code-analysis
+    - https://systemverification.com/solutions/quality-operations/ai-test-report-analysis
+    - https://systemverification.com/solutions/quality-operations/low-code-and-ai-testing
+    - https://systemverification.com/solutions/quality-operations/test-automation
+    - https://systemverification.com/solutions/quality-insights/technical-due-diligence
+    - https://systemverification.com/case/alfa-laval-success-story
+    - https://systemverification.com/case/test-automation-diaverum
+    - https://systemverification.com/case/ai-driven-test-hardware-integration
+    - https://systemverification.com/industry-automotive
+    - https://systemverification.com/industry-finance
+  user_agent: "rag-eval-harness/0.1 (portfolio project; contact via GitHub)"
+  delay_seconds: 1.0  # pause between requests to be polite to the server
+
+index:
+  embedding_model: text-embedding-3-small
+  chunk_size: 512     # tokens per chunk
+  chunk_overlap: 50   # tokens shared between neighbouring chunks
