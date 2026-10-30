@@ -56,6 +56,13 @@ reports/latest.md, GitHub Actions
 - **Hallucination:** the model states something that isn't supported by its sources.
 - **Over-refusal:** the model refuses or says "I don't know" when it should have answered.
 
+- **LLM-as-a-judge:** a second model that grades the first model's answers against a rubric.
+- **Rubric:** the written grading rules the judge follows.
+- **Faithful:** every claim in the answer is supported by the retrieved context.
+- **Correct:** the answer is actually right, compared with facts a human wrote down.
+- **Structured output:** the model returns data that fits a typed schema (here the `Verdict` class)
+  instead of free text.
+
 The glossary grows as later steps add terms.
 
 ## Step docs
@@ -63,3 +70,4 @@ The glossary grows as later steps add terms.
 1. [Ingest](01-ingest.md): fetch pages, clean them, build the index
 2. [Chatbot](02-chatbot.md): retrieve chunks, answer from them, return answer + sources
 3. [Dataset](03-dataset.md): 21 test cases (normal, unanswerable, injection) and a baseline run
+4. [Judge](04-judge.md): Pydantic AI judge returning a typed Verdict, and how the rubric was tuned

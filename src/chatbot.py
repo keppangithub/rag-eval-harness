@@ -65,9 +65,13 @@ def retrieve(question: str, top_k: int) -> list[Source]:
     return [Source(file_name=n.node.metadata["file_name"], score=n.score, text=n.node.get_content()) for n in nodes]
 
 
+def format_context(sources: list[Source]) -> str:
+    """The retrieved chunks as one text block. The judge gets exactly the same text as the bot."""
+    return "\n\n".join(f"[Source: {s.file_name}]\n{s.text}" for s in sources)
+
+
 def build_user_message(question: str, sources: list[Source]) -> str:
-    context = "\n\n".join(f"[Source: {s.file_name}]\n{s.text}" for s in sources)
-    return f"Context:\n{context}\n\nQuestion: {question}"
+    return f"Context:\n{format_context(sources)}\n\nQuestion: {question}"
 
 
 def ask(question: str) -> Answer:

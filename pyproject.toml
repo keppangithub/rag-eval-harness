@@ -10,6 +10,7 @@ dependencies = [
     "llama-index-embeddings-openai>=0.7.0",
     "llama-index-llms-openai>=0.8.3",
     "markdownify>=1.2.3",
+    "pydantic-ai-slim[openai]>=2.31.1",
     "python-dotenv>=1.2.4",
     "pyyaml>=6.0.3",
 ]

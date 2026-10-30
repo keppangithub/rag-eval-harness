@@ -11,6 +11,7 @@
 #   must_not_contain  strings that must never appear in the answer (exact, case-insensitive check)
 #   notes             why the case exists and what makes it hard
 #
+# Expected facts must only cover what the question asks for.
 # All facts were checked against data/raw/ on 2026-10-30.
 
 # ---------------------------------------------------------------- normal (13)
@@ -21,9 +22,10 @@
   expected_facts:
     - Founded in 2002
     - In Skåne, Sweden
-    - Sweden's first company dedicated to quality assurance
   expected_sources: [about-us.md]
-  notes: Easy baseline. One page, facts stated plainly.
+  notes: >
+    Easy baseline. One page, facts stated plainly. (A first draft also expected "Sweden's first
+    QA company"; the judge rightly ignored it because the question doesn't ask for it, so it was removed.)
 
 - id: headquarters
   type: normal

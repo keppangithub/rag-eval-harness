@@ -35,3 +35,7 @@ chatbot:
   model: gpt-5.4-nano  # cheapest current model ($0.20 in / $1.25 out per 1M tokens, Oct 2026)
   temperature: 0.7     # a normal product setting, so the stability test has real variation to measure
   top_k: 3             # number of chunks put into the prompt
+
+judge:
+  model: gpt-5.4-mini  # different and stronger than the chatbot ($0.75 in / $4.50 out per 1M tokens, Oct 2026)
+  temperature: 0       # a grader should be as consistent as possible

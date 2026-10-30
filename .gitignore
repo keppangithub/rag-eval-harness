@@ -12,3 +12,6 @@ wheels/
 # Secrets and local caches
 .env
 .cache/
+
+# Personal review notes
+.review/
