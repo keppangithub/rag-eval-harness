@@ -22,6 +22,7 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+junit_family = "legacy"  # keeps record_property data in the XML output
 markers = [
     "fast: no chat model calls, deterministic, runs on every push",
     "llm: calls OpenAI chat models, costs money, non-deterministic",

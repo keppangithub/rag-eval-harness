@@ -8,7 +8,7 @@ ask() returns the answer together with the chunks it was based on, because the t
 import sys
 from functools import cache
 
-from llama_index.core import StorageContext, VectorStoreIndex, load_index_from_storage
+from llama_index.core import QueryBundle, StorageContext, VectorStoreIndex, load_index_from_storage
 from llama_index.core.llms import ChatMessage
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.openai import OpenAI
@@ -59,9 +59,14 @@ def load_index() -> VectorStoreIndex:
     return load_index_from_storage(storage, embed_model=OpenAIEmbedding(model=cfg["embedding_model"]))
 
 
-def retrieve(question: str, top_k: int) -> list[Source]:
-    """Find the top_k chunks closest to the question. Embeds the question, no chat model call."""
-    nodes = load_index().as_retriever(similarity_top_k=top_k).retrieve(question)
+def retrieve(question: str, top_k: int, query_embedding: list[float] | None = None) -> list[Source]:
+    """Find the top_k chunks closest to the question. No chat model call.
+
+    Without query_embedding, the question is embedded through the OpenAI API. With a
+    pre-computed embedding, no API call is made at all (used by the fast tests in CI).
+    """
+    query = QueryBundle(query_str=question, embedding=query_embedding)
+    nodes = load_index().as_retriever(similarity_top_k=top_k).retrieve(query)
     return [Source(file_name=n.node.metadata["file_name"], score=n.score, text=n.node.get_content()) for n in nodes]
 
 

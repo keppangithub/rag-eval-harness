@@ -74,9 +74,10 @@
   expected_facts:
     - AI, QA and testing expertise
     - The Personal Agent, a chatbot for employees
-    - ALVA was built together with Reeinvent and CodeScene
   expected_sources: [alfa-laval-success-story.md, ai.md]
   notes: >
+    (A first draft also expected "built with Reeinvent and CodeScene"; the question doesn't ask
+    who else was involved, so it was removed after the first test run.)
     The page has many "0 %" counters from the scrape, and says both "90 days" and "10 weeks" for
     the launch. A good answer sticks to the contribution and doesn't invent numbers.
 

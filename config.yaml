@@ -39,3 +39,10 @@ chatbot:
 judge:
   model: gpt-5.4-mini  # different and stronger than the chatbot ($0.75 in / $4.50 out per 1M tokens, Oct 2026)
   temperature: 0       # a grader should be as consistent as possible
+
+tests:
+  correctness_min_score: 4  # judge score (1-5) a normal case needs to pass
+  stability:
+    case_ids: [founded, iso-certifications, ai-testing-risks]  # an easy, a trap and a list question
+    runs: 5                 # times each question is asked
+    max_score_spread: 1     # highest minus lowest judge score allowed across the runs

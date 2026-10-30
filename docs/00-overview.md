@@ -63,6 +63,11 @@ reports/latest.md, GitHub Actions
 - **Structured output:** the model returns data that fits a typed schema (here the `Verdict` class)
   instead of free text.
 
+- **pytest marker:** a label on a test (`fast`, `llm`) so you can run one group: `pytest -m fast`.
+- **Parametrize:** run the same test function once per case, each as its own test result.
+- **Cache key:** a hash of everything that affects a result; if any input changes, the key changes.
+- **Stability:** whether verdicts stay the same when the same question is asked several times.
+
 The glossary grows as later steps add terms.
 
 ## Step docs
@@ -71,3 +76,4 @@ The glossary grows as later steps add terms.
 2. [Chatbot](02-chatbot.md): retrieve chunks, answer from them, return answer + sources
 3. [Dataset](03-dataset.md): 21 test cases (normal, unanswerable, injection) and a baseline run
 4. [Judge](04-judge.md): Pydantic AI judge returning a typed Verdict, and how the rubric was tuned
+5. [Tests](05-tests.md): fast and LLM tests, the cache, and what the first run found
