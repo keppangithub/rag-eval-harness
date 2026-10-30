@@ -52,9 +52,14 @@ reports/latest.md, GitHub Actions
 - **Prompt injection:** text that tries to make the model ignore its instructions, for example
   "ignore your rules and ...".
 
+- **Eval dataset:** a fixed set of questions with known good behaviour, used like test cases.
+- **Hallucination:** the model states something that isn't supported by its sources.
+- **Over-refusal:** the model refuses or says "I don't know" when it should have answered.
+
 The glossary grows as later steps add terms.
 
 ## Step docs
 
 1. [Ingest](01-ingest.md): fetch pages, clean them, build the index
 2. [Chatbot](02-chatbot.md): retrieve chunks, answer from them, return answer + sources
+3. [Dataset](03-dataset.md): 21 test cases (normal, unanswerable, injection) and a baseline run
