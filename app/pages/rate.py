@@ -1,6 +1,6 @@
 """A small web page for rating the bot's answers by hand. Saves to data/eval/human_labels.csv.
 
-    uv run streamlit run app/rate.py
+    uv run streamlit run app/pages/rate.py     (or the "Rate answers" page in app/main.py)
 """
 
 import csv
@@ -10,7 +10,7 @@ from pathlib import Path
 
 import streamlit as st
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # so `src` can be imported
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # so `src` can be imported
 from src.labels import CSV_COLUMNS, LABEL_ANSWERS, LABELS_CSV  # noqa: E402
 
 RULES = {
@@ -41,8 +41,6 @@ def load_contexts() -> dict[str, list[dict]]:
     items = json.loads(LABEL_ANSWERS.read_text())
     return {i["item_id"]: i["answer"]["sources"] for i in items}
 
-
-st.set_page_config(page_title="Rate answers", layout="centered")
 
 if "rows" not in st.session_state:
     st.session_state.rows = load_rows()

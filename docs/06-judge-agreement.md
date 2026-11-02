@@ -1,6 +1,6 @@
 # Step 6: Judge agreement (who judges the judge?)
 
-Files: `src/labels.py` (exports answers to rate), `app/rate.py` (rating page),
+Files: `src/labels.py` (exports answers to rate), `app/pages/rate.py` (rating page),
 `data/eval/human_labels.csv` (the ratings), `data/eval/label_answers.json` (the exact answers and
 contexts that were rated), `src/agreement.py` (compares), `tests/test_judge_agreement.py`,
 `tests/test_kappa.py`. Settings: `tests.judge_agreement` in `config.yaml`.
@@ -18,7 +18,7 @@ reference labels on the same answers.
 2. The ratings were made **blind**: the file has no judge verdicts in it, so the rater can't be
    steered by them.
 3. **Who rated what (the `rater` column):**
-   - **6 rated by me** (`human`) in the rating page (`uv run streamlit run app/rate.py`).
+   - **6 rated by me** (`human`) in the rating page (`uv run streamlit run app/pages/rate.py`).
    - **21 rated by an AI agent** (`agent`, Claude Code), which checked every fact against the
      pages in `data/raw/` with search tools and wrote the evidence, with file and line number, in
      `human_note`. I reviewed them.

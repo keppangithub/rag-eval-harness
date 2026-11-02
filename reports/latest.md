@@ -1,6 +1,6 @@
 # Eval report
 
-Run finished 2026-11-02T11:10:10+00:00 · selection: `-q` · LLM cache on
+Run finished 2026-11-02T11:16:13+00:00 · selection: `-q` · LLM cache on
 
 **66 of 75 tests passed.** Individual cases may fail; the build is gated on the pass rate per category (see `gates` in config.yaml).
 

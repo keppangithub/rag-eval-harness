@@ -85,3 +85,4 @@ The glossary grows as later steps add terms.
 5. [Tests](05-tests.md): fast and LLM tests, the cache, and what the first run found
 6. [Judge agreement](06-judge-agreement.md): judge vs. reference labels, agreement and Cohen's kappa
 7. [Report](07-report.md): reports/latest.md, cost tracking and CI gates
+8. [Demo app](08-demo-app.md): Streamlit app for walking through it all, with a suggested 10-minute demo

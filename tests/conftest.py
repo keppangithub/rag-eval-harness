@@ -47,7 +47,9 @@ def pytest_runtest_logreport(report):
 
 
 def pytest_sessionfinish(session):
-    if not _results:
+    # RAG_EVAL_NO_REPORT=1 is used by the demo app when it runs only part of the suite, so a
+    # partial run doesn't replace the full results.
+    if not _results or os.environ.get("RAG_EVAL_NO_REPORT") == "1":
         return
     from src.evaluate import usage_by_model
     from src.report import write_report

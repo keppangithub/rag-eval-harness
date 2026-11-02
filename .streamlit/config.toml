@@ -1,0 +1,9 @@
+# Look of the demo app (app/main.py).
+[theme]
+primaryColor = "#2563eb"
+
+[client]
+toolbarMode = "minimal"  # hides the "Deploy" button
+
+[browser]
+gatherUsageStats = false
