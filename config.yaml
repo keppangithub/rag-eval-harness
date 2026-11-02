@@ -49,3 +49,16 @@ tests:
   judge_agreement:
     min_agreement: 0.80     # share of labelled answers where judge and label agree on correct
     min_kappa: 0.60         # Cohen's kappa; 0.6+ is usually called substantial agreement
+
+# USD per 1M tokens, from developers.openai.com/api/docs/pricing (checked 2026-10-30).
+pricing:
+  gpt-5.4-nano: {input: 0.20, output: 1.25}
+  gpt-5.4-mini: {input: 0.75, output: 4.50}
+
+# What the build must meet (checked by `python -m src.report --gate`, used in CI).
+# Individual cases may fail; the build fails when a category's pass rate drops below its gate.
+gates:
+  unit: 1.00          # dataset checks, Verdict model, kappa: plain code, must all pass
+  retrieval: 0.75     # share of cases with an expected source in top_k
+  faithfulness: 0.90  # share of answers the judge finds supported by the context
+  judge_agreement: 1.00  # the agreement test itself applies min_agreement and min_kappa

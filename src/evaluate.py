@@ -5,7 +5,7 @@ import os
 
 from llama_index.embeddings.openai import OpenAIEmbedding
 
-from src.cache import cached
+from src.cache import cached, fresh_keys, results
 from src.chatbot import SYSTEM_PROMPT, Answer, ask, format_context
 from src.config import ROOT, load_config
 from src.dataset import Case
@@ -53,3 +53,28 @@ def query_embedding(question: str) -> list[float]:
         data["embeddings"][question] = OpenAIEmbedding(model=model).get_query_embedding(question)
         QUERY_EMBEDDINGS_FILE.write_text(json.dumps(data))
     return data["embeddings"][question]
+
+
+def usage_by_model() -> dict[str, dict[str, int]]:
+    """Tokens behind every answer and verdict used in this run, per model.
+
+    `input`/`output` count all results (also those loaded from the cache): what the results cost to
+    produce. `fresh_input`/`fresh_output` only count real API calls made in this run.
+    """
+    usage: dict[str, dict[str, int]] = {}
+    for key, result in results().items():
+        if isinstance(result, Answer):
+            model, tokens_in, tokens_out = result.model, result.prompt_tokens, result.completion_tokens
+        elif isinstance(result, JudgeResult):
+            model, tokens_in, tokens_out = result.model, result.input_tokens, result.output_tokens
+        else:
+            continue
+        u = usage.setdefault(model, {"calls": 0, "input": 0, "output": 0, "fresh_calls": 0, "fresh_input": 0, "fresh_output": 0})
+        u["calls"] += 1
+        u["input"] += tokens_in
+        u["output"] += tokens_out
+        if key in fresh_keys:
+            u["fresh_calls"] += 1
+            u["fresh_input"] += tokens_in
+            u["fresh_output"] += tokens_out
+    return usage

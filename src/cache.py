@@ -23,6 +23,8 @@ T = TypeVar("T", bound=BaseModel)
 # Results already produced in this process. Always used, even with the disk cache off, so that
 # within one test run the faithfulness and correctness tests grade the very same answer.
 _memory: dict[str, BaseModel] = {}
+# Keys computed with a real API call in this process (not loaded from disk). Used for cost reporting.
+fresh_keys: set[str] = set()
 
 
 def cache_enabled() -> bool:
@@ -31,6 +33,11 @@ def cache_enabled() -> bool:
 
 def cache_key(data: dict[str, Any]) -> str:
     return hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()[:16]
+
+
+def results() -> dict[str, BaseModel]:
+    """Every result used in this process so far, keyed by "<namespace>/<hash>"."""
+    return _memory
 
 
 def cached(namespace: str, key_data: dict[str, Any], model: type[T], compute: Callable[[], T]) -> T:
@@ -42,6 +49,7 @@ def cached(namespace: str, key_data: dict[str, Any], model: type[T], compute: Ca
             _memory[key] = model.model_validate_json(path.read_text())
         else:
             _memory[key] = compute()
+            fresh_keys.add(key)
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(_memory[key].model_dump_json(indent=2))  # also with --no-llm-cache, to refresh it
     return _memory[key]
