@@ -68,6 +68,10 @@ reports/latest.md, GitHub Actions
 - **Cache key:** a hash of everything that affects a result; if any input changes, the key changes.
 - **Stability:** whether verdicts stay the same when the same question is asked several times.
 
+- **Reference labels:** trusted ratings of answers, used to check the judge.
+- **Agreement rate:** share of answers where the judge and the labels say the same.
+- **Cohen's kappa:** agreement corrected for luck. 1 = perfect, 0 = no better than chance.
+
 The glossary grows as later steps add terms.
 
 ## Step docs
@@ -77,3 +81,4 @@ The glossary grows as later steps add terms.
 3. [Dataset](03-dataset.md): 21 test cases (normal, unanswerable, injection) and a baseline run
 4. [Judge](04-judge.md): Pydantic AI judge returning a typed Verdict, and how the rubric was tuned
 5. [Tests](05-tests.md): fast and LLM tests, the cache, and what the first run found
+6. [Judge agreement](06-judge-agreement.md): judge vs. reference labels, agreement and Cohen's kappa

@@ -46,3 +46,6 @@ tests:
     case_ids: [founded, iso-certifications, ai-testing-risks]  # an easy, a trap and a list question
     runs: 5                 # times each question is asked
     max_score_spread: 1     # highest minus lowest judge score allowed across the runs
+  judge_agreement:
+    min_agreement: 0.80     # share of labelled answers where judge and label agree on correct
+    min_kappa: 0.60         # Cohen's kappa; 0.6+ is usually called substantial agreement
