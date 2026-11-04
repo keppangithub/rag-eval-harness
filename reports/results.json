@@ -1,7 +1,7 @@
 {
-  "finished": "2026-11-02T11:16:13+00:00",
+  "finished": "2026-11-03T14:28:43+00:00",
   "cache_enabled": true,
-  "selection": "-q",
+  "selection": "-q -p no:cacheprovider",
   "tests": [
     {
       "test": "tests/test_correctness.py::test_answer_is_correct[founded]",
@@ -522,7 +522,7 @@
       "case_id": "total-employees",
       "outcome": "passed",
       "message": "",
-      "duration": 0.0,
+      "duration": 0.01,
       "properties": {
         "answer": "The context states that System Verification has **0 employees** in total.",
         "verdict": {
@@ -540,7 +540,7 @@
       "case_id": "ceo",
       "outcome": "passed",
       "message": "",
-      "duration": 0.01,
+      "duration": 0.0,
       "properties": {
         "answer": "The provided information does not mention the CEO of System Verification.",
         "verdict": {

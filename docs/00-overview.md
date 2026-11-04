@@ -23,7 +23,7 @@ chatbot  -> answer + the chunks it used ("sources")
         |  steps 4-6
         v
 pytest suite: retrieval, faithfulness, correctness, unanswerable, injection, stability
-LLM judge (Pydantic AI) grades answers; its grades are checked against my own ratings
+LLM judge (Pydantic AI) grades answers; its grades are checked against reference ratings (6 by me, 21 by an AI agent)
         |  steps 7-8
         v
 reports/latest.md, GitHub Actions
